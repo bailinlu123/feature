@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery/3.2.1/jquery.min.js}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+<title>Edit Staff</title>
+
+<body>
+	<div id="header" th:replace="~{header :: header}"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<h1>Edit Staff</h1>
+				<div th:if="${param.success}">
+					<div class="alert alert-info">You've successfully updated!</div>
+				</div>
+				<form th:action="@{/users/update/{id}(id=*{id})}" th:method="put" th:object="${user}">
+
+					<p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+						th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation error</p>
+
+					<div class="form-group">
+						<label class="control-label">First name</label>
+						<input class="form-control" type="text" th:field="*{firstName}" required/>
+						<p class="error-message" th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Last name</label>
+						<input class="form-control" type="text" th:field="*{lastName}" required/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Department</label>
+						<select class="form-control" id="department" th:field="*{department}">
+							<option value=""></option>
+							<option value="Business department">Business department</option>
+							<option value="Inancial department">Financial department</option>
+							<option value="Legal department">Legal department</option>
+							<option value="Management">Management</option>
+                        </select>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Birthday</label>
+						<input class="form-control" type="date" th:field="*{birthDay}" required/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Sex</label>
+						<select class="form-control" id="sex" th:field="*{sex}">
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+                        </select>
+					</div>
+					<div class="form-group">
+						<label class="control-label">E-mail</label>
+						<input class="form-control" type="text" th:field="*{email}" required/>
+					</div>
+					<div th:if=" ${userRoles} == 'Manager'" class="form-group">
+						<label>Role</label>
+						<select class="form-control" id="userRoles" th:field="*{userRoles}">
+							<option value="Manager">Manager</option>
+							<option value="Staff">Staff</option>
+							<option value="Customer">Customer</option>
+                        </select>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">Save</button>
+					</div>
+					<div th:if=" ${userRoles} == 'Manager'" class="pull-right">
+						<a class="btn btn-link" href="/" th:href="@{/users}">To user list</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>

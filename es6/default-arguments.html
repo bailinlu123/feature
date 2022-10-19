@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>defult arguments</title>
+</head>
+
+<body>
+<script>
+    
+    //例
+    // function multiply(a, b){
+    //     // 如果a时undefined，则a=5, 否则为a
+    //     //const　a = a || 5;
+    //     a = a || 3;
+    //     b = b || 5;
+    //     return a * b;
+    // }
+
+
+    function multiply(a=3, b=5){
+        return a * b;
+    }
+    // multiply(undefined, 3) = 9
+    // multiply(null, 3) = 0
+</script>
+</body>
+
+</html>

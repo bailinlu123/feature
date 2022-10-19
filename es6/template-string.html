@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Template Strings/literals</title>
+    <style>
+        .higlight{
+            padding: 2px 5px;
+            background: #00adb5;
+            color: white
+        }
+    </style>
+</head>
+
+<body>
+<script>
+
+//    const person = 'Haku RR';
+//    const age = 5;
+//    const sentence = `${person} is ${age * 5} years old`;
+//    console.log(sentence);
+
+//    const template = [
+//        '<div class="greet">',
+//        '<p>Hello</p>',
+//        '</div>'
+//    ].join("")
+//     console.log(template);
+//     document.body.innerHTML = template
+
+//     const template2 =`
+//        <div class="greet">
+//         <p>Hello2</p>
+//        </div>
+//    `.trim()
+//     console.log(template2);
+    // document.body.innerHTML = template2
+
+
+    // const Haku = {
+    //     name: 'Haku RR',
+    //     date: '2020-01-01',
+    //     todos: [
+    //         {name: 'Go to Store', complete: false},
+    //         {name: 'Watch Movie', complete: true},
+    //         {name: 'Coding', complete: true}
+    //     ]
+    // }
+
+    // const tem3 =`
+    // <ul>
+    //     ${Haku.todos.map(todo => 
+    //         `<li>
+    //             ${todo.name} ${todo.complete ? '〇' : '×'}
+    //         </li>`).join('')}
+    // </ul>
+    // `
+    // document.body.innerHTML = tem3;
+
+
+    // function higlight(strings, ...values){
+    //     // debugger
+    //     const higlighted = values.map(value => `<span class="higlight">
+    //         ${value}</span>`);
+
+    //     // let str = '';
+    //     // strings.forEach((element,index) => {
+    //     //     str += `${element}${higlighted[index] || ''} `
+    //     // });
+    //     // return str;
+
+    //     return strings.reduce((prev, curr ,index) => `${prev}${curr}${higlighted[index] || ''} `, '')
+    // }
+    
+    // const user = 'Mary';
+    // const topic = 'Learn to use markDown';
+    // const sentence = higlight`${user} has comented on your topic ${topic}`;
+    
+    // document.body.innerHTML = sentence;
+</script>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/jquery/3.2.1/jquery.min.js}" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap-table/1.17.1/dist/bootstrap-table.min.css}" />
+
+<title>Show report</title>
+</head>
+<body>
+	<div id="header" th:replace="~{header :: header}"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Detail Report</h1>
+				<div th:if="${param.success}">
+					<div class="alert alert-info">You've successfully sava the report!</div>
+				</div>
+				<!-- <form> -->
+				<form action="#" th:action="@{/dailyReport}" th:object="${detail}" method="post">
+				<div>
+					<p class="error-message" th:if="${#fields.hasGlobalErrors()}" th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation error</p>
+					<table class="table table-striped" >
+					<thead>
+					<tr>
+						<td></td>
+						<td>
+							<input class="form-control" type="hidden" th:field="*{id}" />
+							<p class="error-message" th:each="error: ${#fields.errors('*{id}')}" th:text="${error}">Validation error</p>
+						</td>
+						<td>
+							<input class="form-control" type="time" th:field="*{inputStartTime}" />
+							<p class="error-message" th:each="error: ${#fields.errors('*{inputStartTime}')}" th:text="${error}">Validation error</p>
+						</td>
+						<td>
+							<input class="form-control" type="time" th:field="*{inputEndTime}" />
+							<p class="error-message" th:each="error: ${#fields.errors('*{inputEndTime}')}" th:text="${error}">Validation error</p>
+						</td>
+						<td>
+							<input class="form-control" type="time" th:field="*{inputBreakTime}" />
+							<p class="error-message" th:each="error: ${#fields.errors('*{inputBreakTime}')}" th:text="${error}">Validation error</p>
+						</td>
+						<td>
+							<button class="btn btn-success" type="submit" name="action" value="defaultInput">Default Input</button>
+						</td>
+						<td>
+							<button class="btn btn-info" type="submit" name="action" value="save">Save</button>
+						</td>
+						<td class="pull right">
+							<a class="btn btn-link" href="/" th:href="@{/dailyReport}">To report list</a>
+						</td>
+					</tr>
+					</thead>
+					<thead>
+					<tr class="success">
+						<th class="control-label">Date</th>
+						<th class="control-label">Day of the week</th>
+						<th class="control-label">Start Time</th>
+						<th class="control-label">End Time</th>
+						<th class="control-label">Break Time</th>
+						<th class="control-label">Work Time</th>
+						<th class="control-label">Remarks</th>
+						<th class="control-label">Status</th>
+						<th class="control-label"></th>
+						<th class="control-label"></th>
+					</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="reporDayDto, itemStat : *{reporDayDto}" th:class="*{reporDayDto[__${itemStat.index}__].rest} ? 'danger' : 'info'">
+							<td class="col-md-2">
+								<input class="form-control" type="text" th:field="*{reporDayDto[__${itemStat.index}__].day}" readonly/>
+								<p class="error-message" th:each="error: ${#fields.errors('*{reporDayDto[__${itemStat.index}__].day}')}" th:text="${error}">Validation error</p>
+							</td>
+							<td class="col-md-2">
+								<input class="form-control" type="text" th:field="*{reporDayDto[__${itemStat.index}__].dayOfTheWeek}" readonly />
+								<p class="error-message" th:each="error: ${#fields.errors('*{reporDayDto[__${itemStat.index}__].dayOfTheWeek}')}" th:text="${error}">Validation error</p>
+							</td>
+							<td class="col-md-1.5">
+								<input class="form-control" type="time" name="alarm" th:field="*{reporDayDto[__${itemStat.index}__].startTime}" />
+								<p class="error-message" th:each="error: ${#fields.errors('*{reporDayDto[__${itemStat.index}__].startTime}')}" th:text="${error}">Validation error</p>
+							</td>
+							<td class="col-md-1.5">
+								<input class="form-control" type="time" name="alarm" th:field="*{reporDayDto[__${itemStat.index}__].endTime}" />
+								<p class="error-message" th:each="error: ${#fields.errors('*{reporDayDto[__${itemStat.index}__].endTime}')}" th:text="${error}">Validation error</p>
+							</td>
+							<td class="col-md-1.5">
+								<input class="form-control" type="time" name="alarm" th:field="*{reporDayDto[__${itemStat.index}__].breakTime}" />
+								<p class="error-message" th:each="error: ${#fields.errors('*{reporDayDto[__${itemStat.index}__].breakTime}')}" th:text="${error}">Validation error</p>
+							</td>
+							<td class="col-md-1.5">
+								<input class="form-control" type="time" name="alarm" th:field="*{reporDayDto[__${itemStat.index}__].workTime}" readonly />
+								<p class="error-message" th:each="error: ${#fields.errors('*{reporDayDto[__${itemStat.index}__].workTime}')}" th:text="${error}">Validation error</p>
+							</td>
+							<td class="col-md-3">
+								<input class="form-control" type="text" name="alarm" th:field="*{reporDayDto[__${itemStat.index}__].remarks}">
+								<p class="error-message" th:each="error: ${#fields.errors('*{reporDayDto[__${itemStat.index}__].remarks}')}" th:text="${error}">Validation error</p>
+							</td>
+							<td class="col-md-2">
+								<select class="form-control" th:field="*{reporDayDto[__${itemStat.index}__].status}">
+									<option value="01:Normal">01:Normal</option>
+									<option value="02:Weekdays">02:Weekdays</option>
+									<option value="03:Holidays">03:Holidays</option>
+									<option value="04:Vacation">04:Vacation</option>
+                        		</select>
+							</td>
+							<td>
+								<input class="form-control" type="hidden" th:field="*{reporDayDto[__${itemStat.index}__].id}" readonly />
+								<p class="error-message" th:each="error: ${#fields.errors('*{reporDayDto[__${itemStat.index}__].id}')}" th:text="${error}">Validation error</p>
+							</td>
+							<td>
+								<input class="form-control" type="hidden" th:field="*{reporDayDto[__${itemStat.index}__].rest}" readonly />
+								<p class="error-message" th:each="error: ${#fields.errors('*{reporDayDto[__${itemStat.index}__].rest}')}" th:text="${error}">Validation error</p>
+							</td>
+						<tr>
+					</tbody>
+
+					</table>
+				</div>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+		<script type="text/javascript"
+		th:src="@{/webjars/bootstrap-table/1.17.1/dist/bootstrap-table.min.js}"></script>
+
+
+</body>
+</html>

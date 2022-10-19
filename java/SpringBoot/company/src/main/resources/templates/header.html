@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/jquery/3.2.1/jquery.min.js}" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+<title>header</title>
+</head>
+<body>
+    <div th:fragment="header" th:remove="tag">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Manage Company System</a>
+			</div>
+			<div  th:object="${userRoles}" th:if=" ${userRoles} == 'Manager'" id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="/" th:href="@{/users}" >Manage User</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contract<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li class="nav-item"><a class="nav-link" href="/" th:href="@{/contracts}" >Contract List</a></li>
+							<li class="nav-item"><a class="nav-link" href="/" th:href="@{/contracts/new}" >Request Contract</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Product<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li class="nav-item"><a class="nav-link" href="/" th:href="@{/products/new}" >Add a product</a></li>
+							<li class="nav-item"><a class="nav-link" href="/" th:href="@{/products}" >Product List</a></li>
+						</ul>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/" th:href="@{/dailyReport}" >Daily Report</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More Action <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/" th:href="@{/users/personalInformation}" >Personal information</a></li>
+							<li><a href="/" th:href="@{/resetPassword}" >Reset password</a></li>
+							<li role="separator" class="divider"></li>
+							<li sec:authorize="isAuthenticated()"><a th:href="@{/login}">Login</a></li>
+							<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+			<div th:object="${userRoles}" th:if=" ${userRoles} == 'Staff'" id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contract<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li class="nav-item"><a class="nav-link" href="/" th:href="@{/contracts}" >Contract List</a></li>
+							<li class="nav-item"><a class="nav-link" href="/" th:href="@{/contracts/new}" >Request Contract</a></li>
+						</ul>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/" th:href="@{/products}" >Product</a></li>
+					<li class="nav-item"><a class="nav-link" href="/" th:href="@{/dailyReport}" >Daily Report</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More Action <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/" th:href="@{/users/personalInformation}" >Personal information</a></li>
+							<li><a href="/" th:href="@{/resetPassword}" >Reset password</a></li>
+							<li role="separator" class="divider"></li>
+							<li sec:authorize="isAuthenticated()"><a th:href="@{/login}">Login</a></li>
+							<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+			<div th:object="${userRoles}" th:if=" ${userRoles} == 'Customer'" id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="/" th:href="@{/products}" >Product</a></li>
+					<li class="nav-item"><a class="nav-link" href="/" th:href="@{/contracts}" >Contract List</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More Action <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/" th:href="@{/users/personalInformation}" >Personal information</a></li>
+							<li><a href="/" th:href="@{/resetPassword}" >Reset password</a></li>
+							<li role="separator" class="divider"></li>
+							<li sec:authorize="isAuthenticated()"><a th:href="@{/login}">Login</a></li>
+							<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+    </div>
+</body>
+</html>

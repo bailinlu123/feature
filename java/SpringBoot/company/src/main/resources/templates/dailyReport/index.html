@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+<title>dailyReport List</title>
+
+<body>
+	<div id="header" th:replace="~{header :: header}"></div>
+	<div class="container">
+		<h1>Report List</h1>
+		<form action="#" th:action="@{/dailyReport}" th:object="${reports}">
+		<table class="table table-striped" >
+		<thead>
+			<tr th:class="success">
+            <th>Year</th>
+            <th>Month</th>
+            <th>Total Days</th>
+            <th>Weekdays</th>
+            <th>Holidays</th>
+            <th>Vacation</th>
+            <th>Total working hours</th>
+            <th>Basic commuting hours</th>
+            <th>Overtime hours</th>
+            <th></th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="report:${reports}" th:object="${report}" th:class="*{month}%2 == 0 ? 'active' : 'warning'">
+        	<td th:text="*{year}"></td>
+        	<td th:text="*{month}"></td>
+        	<td th:text="*{totalDays}"></td>
+        	<td th:text="*{weekdays}"></td>
+        	<td th:text="*{holidays}"></td>
+        	<td th:text="*{vacation}"></td>
+        	<td th:text="*{totalWorkingHours}"></td>
+        	<td th:text="*{basicCommutingHours}"></td>
+        	<td th:text="*{overtimeHours}"></td>
+            <td>
+            </td>
+            <td>
+            	<a class="btn btn-link" href="/" th:href="@{/dailyReport/{id}(id=*{id})}">To Detail</a>
+            </td>
+        </tr>
+        </tbody>
+        </table>
+		</form>
+
+		<!--
+		<span><a type="button" class="btn btn-primary" href="/" th:href="@{/dailyReport/new}">Add new report</a></span>
+ 		-->
+		<span>
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalLong">
+		  Add new report
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h3 class="modal-title" id="exampleModalLongTitle">Input year and month</h3>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <form>
+		      <div class="modal-body">
+				<div class="form-group">
+					<label for="year">Date</label>:
+					<input type="month" id="year" name="date" class="form-control" autofocus="autofocus" placeholder="yyyy-MM" required/>
+		      		</div>
+			      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary" href="/" th:href="@{/dailyReport/new}">Add</button>
+		      </div>
+		      </div>
+		      </form>
+		    </div>
+		  </div>
+		</span>
+	</div>
+
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>

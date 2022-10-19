@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Var-Let-Const</title>
+</head>
+
+<body>
+<script>
+
+    // lesson 1
+    // const members = [5,6,13,0,1,18,23];
+    // //箭头函数都是匿名函数
+    // const double = members.map(function(member){
+    //     return member * 2;
+    // })
+
+    // console.log(double);
+
+    // // const double2 = members.map(member => {
+    // const double2 = members.map((member) => {
+    //     return member * 2;
+    // })
+    // console.log(double2);
+
+    // const double3 = members.map((member,i ) => {
+    //     console.log(`i:${i}  member:${member}`)
+    // })
+
+    //隐式返回
+    // const double4 = members.map(member => member * 2);
+    // console.log(double4);
+
+
+    // lesson 2
+    // 指针定义域
+    const Haku = {
+        name: 'Haku rr',
+        hobbies: ['Coding', 'Sleeping', 'Reading'],
+        printHobbies: function(){
+            //普通函数 this值实在运行时定义的
+            // console.log(this);
+            // self = this;
+            // this.hobbies.map(function(hobby){
+            //     // 该函数为map的回调函数，因此该作用域的指针不知想该对象。
+            //     // 默认情况下指向windows ,global或者严格模式下的undefined
+            //     // console.log(this);
+            //     // console.log(`${this.name} likes ${hobby}`);
+            //     // console.log(`${self.name} likes ${hobby}`);
+            // })
+
+            // 箭头函数
+            // 箭头函数的this值不是运行时定义的，而是 与父作用域相同
+            // 并且之后在调用This值也不会在改变
+            // this.hobbies.map(hobby => console.log(`${this.name} likes ${hobby}`))
+        }
+    }
+
+    Haku.printHobbies();
+
+</script>
+</body>
+
+</html>

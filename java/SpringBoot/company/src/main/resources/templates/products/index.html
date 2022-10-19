@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/jquery/3.2.1/jquery.min.js}" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+<title>Registration</title>
+</head>
+<body>
+	<div id="header" th:replace="~{header :: header}"></div>
+	<div class="container">
+	<h2>Product List</h2>
+		<ul class="nav nav-tabs" id="myTabs">
+			<li class="active"><a data-toggle="tab" href="#menu0" >All</a></li>
+			<li><a data-toggle="tab" href="#menu1" >Food</a></li>
+			<li><a data-toggle="tab" href="#menu2" >Clothing</a></li>
+			<li><a data-toggle="tab" href="#menu3" >Mechanical</a></li>
+			<li><a data-toggle="tab" href="#menu4" >Other</a></li>
+		</ul>
+		<div class="tab-content" id="myTabsContent">
+			<div class="tab-pane active row" id="menu0" th:object="${products}">
+				<div class="col-xs-6 col-lg-4" th:each="product:${products}" th:object="${product}">
+				  <h2>[[*{name}]]</h2>
+		          <p>[[*{detail}]]</p>
+		          <p>
+	                <a class="btn btn-info" href="/" th:href="@{/products/{id}(id=*{id})}" role="button">View details &raquo;</a>
+	                <a th:if=" ${userRoles} == 'Manager'" class="btn btn-success" href="/" th:href="@{/products/update/{id}(id=*{id})}" role="button">Update &raquo;</a>
+	                <a th:if=" ${userRoles} == 'Manager'" class="btn btn-danger" href="/" th:href="@{/products/delete/{id}(id=*{id})}" role="button">Delete &raquo;</a>
+	              </p>
+	             </div>
+			</div>
+
+			<div class="tab-pane row" id="menu1" th:object="${products1}">
+				<div class="tab-pane col-xs-6 col-lg-4" th:each="product:${products1}" th:object="${product}">
+				<h2>[[*{name}]]</h2>
+	              <p>[[*{detail}]]</p>
+	              <p>
+	                <a class="btn btn-info" href="/" th:href="@{/products/{id}(id=*{id})}" role="button">View details &raquo;</a>
+	                <a th:if=" ${userRoles} == 'Manager'" class="btn btn-success" href="/" th:href="@{/products/update/{id}(id=*{id})}" role="button">Update &raquo;</a>
+	                <a th:if=" ${userRoles} == 'Manager'" class="btn btn-danger" href="/" th:href="@{/products/delete/{id}(id=*{id})}" role="button">Delete &raquo;</a>
+	              </p>
+				</div>
+			</div>
+
+			<div class="tab-pane row" id="menu2" th:object="${products2}">
+				<div class="tab-pane col-xs-6 col-lg-4" th:each="product:${products2}" th:object="${product}">
+				<h2>[[*{name}]]</h2>
+	              <p>[[*{detail}]]</p>
+	              <p>
+	                <a class="btn btn-info" href="/" th:href="@{/products/{id}(id=*{id})}" role="button">View details &raquo;</a>
+	                <a th:if=" ${userRoles} == 'Manager'" class="btn btn-success" href="/" th:href="@{/products/update/{id}(id=*{id})}" role="button">Update &raquo;</a>
+	                <a th:if=" ${userRoles} == 'Manager'" class="btn btn-danger" href="/" th:href="@{/products/delete/{id}(id=*{id})}" role="button">Delete &raquo;</a>
+	              </p>
+				</div>
+			</div>
+
+			<div class="tab-pane row" id="menu3" th:object="${products3}">
+				<div class="tab-pane col-xs-6 col-lg-4" th:each="product:${products3}" th:object="${product}">
+				<h2>[[*{name}]]</h2>
+	              <p>[[*{detail}]]</p>
+	              <p>
+	                <a class="btn btn-info" href="/" th:href="@{/products/{id}(id=*{id})}" role="button">View details &raquo;</a>
+	                <a th:if=" ${userRoles} == 'Manager'" class="btn btn-success" href="/" th:href="@{/products/update/{id}(id=*{id})}" role="button">Update &raquo;</a>
+	                <a th:if=" ${userRoles} == 'Manager'" class="btn btn-danger" href="/" th:href="@{/products/delete/{id}(id=*{id})}" role="button">Delete &raquo;</a>
+	              </p>
+				</div>
+			</div>
+
+			<div class="tab-pane row" id="menu4" th:object="${products4}">
+				<div class="tab-pane col-xs-6 col-lg-4" th:each="product:${products4}" th:object="${product}">
+				<h2>[[*{name}]]</h2>
+	              <p>[[*{detail}]]</p>
+	              <p>
+	                <a class="btn btn-info" href="/" th:href="@{/products/{id}(id=*{id})}" role="button">View details &raquo;</a>
+	                <a th:if=" ${userRoles} == 'Manager'" class="btn btn-success" href="/" th:href="@{/products/update/{id}(id=*{id})}" role="button">Update &raquo;</a>
+	                <a th:if=" ${userRoles} == 'Manager'" class="btn btn-danger" href="/" th:href="@{/products/delete/{id}(id=*{id})}" role="button">Delete &raquo;</a>
+	              </p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

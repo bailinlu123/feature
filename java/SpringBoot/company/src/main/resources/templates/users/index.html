@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+<title>Users List</title>
+
+<body>
+	<div id="header" th:replace="~{header :: header}"></div>
+	<div class="container">
+		<h1>Users List</h1>
+		<table class="table table-striped">
+		<thead>
+			<tr th:class="success">
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Department</th>
+            <th>E-mail</th>
+            <th>Birthday</th>
+            <th>Sex</th>
+            <th>Roles</th>
+            <th></th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user:${users}" th:object="${user}"  th:class="*{userRoles} == 'Manager' ? 'danger' : (*{userRoles} == 'Staff' ? 'warning' : info)">
+        	<td th:text="*{firstName}"></td>
+        	<td th:text="*{lastName}"></td>
+        	<td th:text="*{department}"></td>
+        	<td th:text="*{email}"></td>
+        	<td th:text="*{birthDay}"></td>
+        	<td th:text="*{sex}"></td>
+        	<td th:text="*{userRoles}"></td>
+            <td>
+            </td>
+            <td>
+            	<ul class="nav navbar-nav navbar-center">
+					<li class="dropdown">
+						<button class="btn btn-info dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Action
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="/" th:href="@{/users/{id}(id=*{id})}" >Reference</a></li>
+							<li><a href="/" th:href="@{/users/{id}/edit(id=*{id})}" >Update</a></li>
+							<li><a href="/" th:href="@{/users/{id}/delete(id=*{id})}" >Delete</a></li>
+							<li><a href="/" th:href="@{/users/{id}/reset(id=*{id})}" >Reset</a></li>
+						</ul>
+					</li>
+				</ul>
+            </td>
+        </tr>
+		</tbody>
+		</table>
+		<span><a type="button" class="btn btn-primary" href="/" th:href="@{/users/new}">Add a user</a></span>
+	</div>
+
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>

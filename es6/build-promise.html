@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Promise Intro</title>
+</head>
+
+<body>
+<script>
+
+    const p = new Promise((reslove, reject) => {
+        setTimeout(()=> {
+            // reslove('seccess');
+            reject('failed')
+        }, 2000);
+    });
+
+    p.then(data => console.log(data))
+    .catch(err => console.error(err));
+</script>
+</body>
+
+</html>

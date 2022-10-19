@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery/3.2.1/jquery.min.js}" />
+
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+<title>Add a product</title>
+</head>
+<body>
+	<div id="header" th:replace="~{header :: header}"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<h1>Add a product</h1>
+				<div th:if="${param.success}">
+					<div class="alert alert-info">You've successfully add a product!</div>
+				</div>
+				<form th:action="@{/products}" th:object="${product}" method="post">
+
+					<p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+						th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation error</p>
+
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('name')}? 'has-error':''">
+						<label for="name" class="control-label">Name</label>
+						<input id="name" class="form-control" th:field="*{name}" required/>
+						<p class="error-message" th:each="error: ${#fields.errors('name')}" th:text="${error}">Validation error</p>
+					</div>
+
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('detail')}? 'has-error':''">
+						<label for="detail" class="control-label">Detail</label>
+						<textarea id="detail" class="form-control" th:field="*{detail}" required/></textarea>
+						<p class="error-message" th:each="error: ${#fields.errors('detail')}" th:text="${error}">Validation error</p>
+					</div>
+
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('type')}? 'has-error':''">
+						<label>Type</label>
+						<select class="form-control" id="type" th:field="*{type}">
+							<option value=""></option>
+							<option value="1:food">food</option>
+							<option value="2:clothing">clothing</option>
+							<option value="3:mechanical">mechanical</option>
+							<option value="4:other">other</option>
+                        </select>
+					</div>
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('typeDetail')}? 'has-error':''">
+						<label for="typeDetail" class="control-label">Type detail</label>
+						<input id="typeDetail" class="form-control" th:field="*{typeDetail}"/>
+						<p class="error-message" th:each="error : ${#fields.errors('typeDetail')}" th:text="${error}">Validation error</p>
+					</div>
+
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('sales')}? 'has-error':''">
+						<label for="sales" class="control-label">Sales</label>
+						<input id="sales" class="form-control" th:field="*{sales}"/>
+						<p class="error-message" th:each="error : ${#fields.errors('sales')}" th:text="${error}">Validation error</p>
+					</div>
+
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('inStock')}? 'has-error':''">
+						<label for="inStock" class="control-label">In stock</label>
+						<input id="inStock" class="form-control" th:field="*{inStock}" required/>
+						<p class="error-message" th:each="error : ${#fields.errors('inStock')}" th:text="${error}">Validation error</p>
+					</div>
+
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('evaluation')}? 'has-error':''">
+						<label for="evaluation" class="control-label">Evaluation</label>
+						<textarea id="evaluation" class="form-control" th:field="*{evaluation}" required></textarea>
+						<p class="error-message" th:each="error : ${#fields.errors('evaluation')}" th:text="${error}">Validation error</p>
+					</div>
+
+					<div class="form-group" th:classappend="${#fields.hasErrors('price')}? 'has-error':''">
+						<label for="price" class="control-label">Price</label>
+						<input id="price" class="form-control" th:field="*{price}" />
+						<p class="error-message" th:each="error : ${#fields.errors('price')}" th:text="${error}">Validation error</p>
+					</div>
+
+					<div class="form-group" th:classappend="${#fields.hasErrors('maker')}? 'has-error':''">
+						<label for="maker" class="control-label">Maker</label>
+						<input id="maker" class="form-control" th:field="*{maker}" />
+						<p class="error-message" th:each="error : ${#fields.errors('maker')}" th:text="${error}">Validation error</p>
+					</div>
+
+					<div class="form-group" th:classappend="${#fields.hasErrors('makeCountry')}? 'has-error':''">
+						<label for="makeCountry" class="control-label">Make country</label>
+						<input id="makeCountry" class="form-control" th:field="*{makeCountry}" />
+						<p class="error-message" th:each="error : ${#fields.errors('makeCountry')}" th:text="${error}">Validation error</p>
+					</div>
+
+					<div class="form-group" th:classappend="${#fields.hasErrors('makeYear')}? 'has-error':''">
+						<label for="makeYear" class="control-label">Make year</label>
+						<input id="makeYear" type="date" class="form-control" th:field="*{makeYear}" />
+						<p class="error-message" th:each="error : ${#fields.errors('makeYear')}" th:text="${error}">Validation error</p>
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">Register</button>
+					</div>
+					<div class="pull-right">
+						<a class="btn btn-link" href="/" th:href="@{/products}">To product list</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>

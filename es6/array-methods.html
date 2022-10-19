@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>.find() and .findIndex()(</title>
+</head>
+
+<body>
+
+<script>
+    const inventory = [
+        {name: 'apples', quantity: 2},
+        {name: 'bananas', quantity: 0},
+        {name: 'oranges', quantity: 5},
+    ]
+
+    // // .find(element, index, array)
+    // 找到数组中的第一个元素立即返回
+    // const bananas = inventory.find(element => element.name === 'bananas')
+    // console.log(bananas)
+
+    // // .findIndex(element, index, array)
+    // const bananasIndex = inventory.findIndex(element => element.name === 'bananas')
+    // console.log(bananasIndex)
+
+    // // .some(element, index, array)
+    // 一部分条件满足，则返回True
+    // const isEnough = inventory.some(element => element.quantity > 1);
+    // console.log(isEnough);
+
+    // // .every(element, index, array)
+    // 全部条件满足，则返回True
+    // const isEnough = inventory.every(element => element.quantity > 1);
+    // console.log(isEnough);
+
+    // // .filter(element, index, array)
+    // const fruits = inventory.filter(fruit => fruit.quantity > 0);
+    // console.log(fruits)
+
+</script>
+</body>
+
+</html>

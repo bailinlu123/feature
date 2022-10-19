@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/jquery/3.2.1/jquery.min.js}" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+<title>Customer information</title>
+
+</head>
+<body>
+	<div id="header" th:replace="~{header :: header}"></div>
+	<div class="container">
+	<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h1>Customer information</h1>
+		<div th:object="${user}">
+			<div class="form-group">
+				<label class="control-label">User ID</label>
+				<input class="form-control" type="text" th:field="*{id}" readonly/>
+			</div>
+			<div class="form-group">
+				<label class="control-label">First name</label>
+				<input class="form-control" type="text" th:field="*{firstName}" readonly/>
+			</div>
+			<div class="form-group">
+				<label class="control-label">Last name</label>
+				<input class="form-control" type="text" th:field="*{lastName}" readonly/>
+			</div>
+			<div class="form-group">
+				<label class="control-label">Birthday</label>
+				<input class="form-control" type="date" th:field="*{birthDay}" readonly/>
+			</div>
+			<div class="form-group">
+				<label class="control-label">Sex</label>
+				<input class="form-control" type="text" th:field="*{sex}" readonly/>
+			</div>
+			<div class="form-group">
+				<label class="control-label">E-mail</label>
+				<input class="form-control" type="text" th:field="*{email}" readonly/>
+			</div>
+			<div class="form-group">
+				<label  class="control-label">Role</label>
+				<input class="form-control" type="text" th:field="*{userRoles}" readonly/>
+			</div>
+			<div>
+				<a class="btn btn-success" th:href="@{/users/{id}/edit(id=*{id})}">Update user</a>
+			</div>
+		</div>
+		<div th:if=" ${userRoles} == 'Manager'" class="pull-right">
+			<a class="btn btn-link" href="/" th:href="@{/users}">To user list</a>
+		</div>
+	</div>
+	</div>
+	</div>
+
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>
